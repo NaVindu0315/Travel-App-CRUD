@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:travel/ReservationList.dart';
 
 late User loggedinuser;
 late String client;
@@ -283,7 +284,15 @@ class _HomeState extends State<Home> {
                         child: Text('Submit')),
                     Spacer(),
                   ],
-                )
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Reservations()),
+                      );
+                    },
+                    child: Text('List')),
               ],
             ),
           ),
