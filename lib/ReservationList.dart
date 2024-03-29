@@ -159,7 +159,7 @@ class fail_attempt extends State<Reservations> {
                           color: AppColors.backgroundcolor,
                           child: ListTile(
                             leading: Icon(
-                              Icons.not_interested,
+                              Icons.manage_accounts,
                               color: Colors.white,
                             ),
                             title: GestureDetector(
@@ -182,7 +182,7 @@ class fail_attempt extends State<Reservations> {
                                 child: Text(
                                   doc.id,
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.pink,
                                     fontSize: 18.0,
                                   ),
                                 ),

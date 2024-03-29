@@ -20,11 +20,14 @@ class _HomeState extends State<Home> {
   ///upload
   Future<void> upload(String loc, String dt1, String dt2, String ac1,
       String ac2, String ac3) async {
+    //meka wadak na ain krhn
     String idd = "$client $loc";
-    final failedattempt = _firestore.collection("reservations").doc(idd);
-    failedattempt.set({
-      'code': idd,
-      'Location': loc,
+    //
+
+    final SingleReservation = _firestore.collection("reservations").doc(idd);
+    SingleReservation.set({
+      '': idd,
+      'Loccodeation': loc,
       'StartingDate': dt1,
       'Enddate': dt2,
       'Activity1': ac1,
@@ -278,6 +281,8 @@ class _HomeState extends State<Home> {
                           activity3controller.text = "";
                           activity2controller.text = "";
                           activity1controller.text = "";
+
+                          ///methanin call krnw hadpu functiuon eka save krnna
                           upload(location, startdate, enddate, activity1,
                               activity2, activity3);
                         },
