@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:travel/ReservationList.dart';
 
 import 'Colors.dart';
 
@@ -336,6 +337,20 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                 ],
                               ),
                             ),
+
+                            ElevatedButton(
+                                onPressed: () {
+                                  FirebaseFirestore.instance
+                                      .collection('reservations')
+                                      .doc(code)
+                                      .delete();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Reservations()),
+                                  );
+                                },
+                                child: Text('Delete'))
                           ],
                         ),
                       ),

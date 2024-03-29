@@ -159,7 +159,7 @@ class _HomeState extends State<Home> {
                         prefixIcon: Icon(
                           Icons.calendar_month_outlined,
                         ),
-                        labelText: 'Location',
+                        labelText: 'End date',
                         border: OutlineInputBorder(),
                       ),
                     ),
