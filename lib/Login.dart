@@ -5,15 +5,15 @@ import 'signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
-  runApp(lgin());
+  runApp(Login());
 }
 
-class lgin extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
-  State<lgin> createState() => _lginState();
+  State<Login> createState() => _LoginState();
 }
 
-class _lginState extends State<lgin> {
+class _LoginState extends State<Login> {
   TextEditingController emailcontroller = TextEditingController();
 
   TextEditingController pwcontroller = TextEditingController();

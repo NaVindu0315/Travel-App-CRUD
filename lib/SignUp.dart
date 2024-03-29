@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:travelapp/Login.dart';
 
 import 'login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,14 +13,11 @@ void main() {
 }
 
 class SignUp extends StatefulWidget {
-
-
   @override
   State<SignUp> createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
 
@@ -32,7 +30,6 @@ class _SignUpState extends State<SignUp> {
   late String pw;
   late String pw2;
 
-
   ///variales end
   ///
   ///function to set data to userfield
@@ -42,7 +39,6 @@ class _SignUpState extends State<SignUp> {
     String mobile,
     String address,
     String dob,
-
   ) async {
     // await _firestore.collection('userdetails').add({'email': email, 'pw': pw});
     await FirebaseFirestore.instance.collection('users').doc(email).set({
@@ -53,7 +49,6 @@ class _SignUpState extends State<SignUp> {
       'dob': dob,
 
       ///meka cut krpn
-
     });
   }
 
@@ -65,19 +60,16 @@ class _SignUpState extends State<SignUp> {
 
       ///call the add details function here
       adduser(
-          username,
-          email,
-          mobile,
-          address,
-          dob,
-
-          ///meka cut krpn
-
-
+        username,
+        email,
+        mobile,
+        address,
+        dob,
+      );
       if (newuser != null) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => lgin()),
+          MaterialPageRoute(builder: (context) => Login()),
         );
       }
     } catch (e) {
@@ -86,8 +78,6 @@ class _SignUpState extends State<SignUp> {
   }
 
   ///creating users end
-
-
 
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
@@ -147,7 +137,7 @@ class _SignUpState extends State<SignUp> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => lgin()),
+                              MaterialPageRoute(builder: (context) => Login()),
                             );
                           },
                           child: Text(
@@ -169,9 +159,7 @@ class _SignUpState extends State<SignUp> {
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.purple.shade200,
                               ),
-                              onPressed: () {
-
-                              },
+                              onPressed: () {},
                               child: Text(
                                 'SIGNUP',
                                 style: TextStyle(
@@ -189,8 +177,6 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: 20.0,
                   ),
-
-
 
                   //// sign up and login labels
 
@@ -300,7 +286,6 @@ class _SignUpState extends State<SignUp> {
                     height: 20.0,
                   ),
                   //to add social media icons
-
 
                   SizedBox(
                     height: 32.0,
