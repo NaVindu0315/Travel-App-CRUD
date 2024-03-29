@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+late User loggedinuser;
+late String client;
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,6 +15,53 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final _firestore = FirebaseFirestore.instance;
+    final _auth = FirebaseAuth.instance;
+
+    void getcurrentuser() async {
+      try {
+        // final user = await _auth.currentUser();
+        ///yata line eka chatgpt code ekk meka gatte uda line eke error ekk ena hinda hrytama scene eka terenne na
+        User? user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          loggedinuser = user;
+          client = loggedinuser.email!;
+
+          ///i have to call the getdatafrm the function here and parse client as a parameter
+
+          print(loggedinuser.email);
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
+
+    ///upload
+    Future<void> upload(String loc, String dt1, String dt2, String ac1,
+        String ac2, String ac3) async {
+      String idd = "$client $loc";
+      final failedattempt = _firestore.collection("reservations").doc(idd);
+      failedattempt.set({
+        'code': idd,
+        'Location': loc,
+        'StartingDate': dt1,
+        'Enddate': dt2,
+        'Activity1': ac1,
+        'Activity2': ac2,
+        'Activity3': ac3,
+      });
+    }
+
+    /// end
+
+    @override
+    void initState() {
+      super.initState();
+      getcurrentuser();
+
+      //_initNetworkInfo();
+    }
+
     TextEditingController locationcontroller = new TextEditingController();
     TextEditingController startdatecontroller = new TextEditingController();
     TextEditingController enddatecontroller = new TextEditingController();
