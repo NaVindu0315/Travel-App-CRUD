@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel/Home.dart';
 
 import '../main.dart';
 
@@ -131,11 +132,11 @@ class _lginState extends State<lgin> {
                                       email: email, password: pw);
 
                               if (user != null) {
-                                /*  Navigator.push(
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => DashBoard()),
-                                );*/
+                                      builder: (context) => Home()),
+                                );
                               }
                             } catch (e) {
                               print(e);
