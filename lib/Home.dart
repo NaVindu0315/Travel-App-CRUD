@@ -13,69 +13,67 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final _firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+
+  ///upload
+  Future<void> upload(String loc, String dt1, String dt2, String ac1,
+      String ac2, String ac3) async {
+    String idd = "$client $loc";
+    final failedattempt = _firestore.collection("reservations").doc(idd);
+    failedattempt.set({
+      'code': idd,
+      'Location': loc,
+      'StartingDate': dt1,
+      'Enddate': dt2,
+      'Activity1': ac1,
+      'Activity2': ac2,
+      'Activity3': ac3,
+    });
+  }
+
+  /// end
+
+  TextEditingController locationcontroller = new TextEditingController();
+  TextEditingController startdatecontroller = new TextEditingController();
+  TextEditingController enddatecontroller = new TextEditingController();
+  TextEditingController activity1controller = new TextEditingController();
+  TextEditingController activity2controller = new TextEditingController();
+  TextEditingController activity3controller = new TextEditingController();
+
+  String location = "";
+  String startdate = "";
+  String enddate = "";
+  String activity1 = "-";
+  String activity2 = "-";
+  String activity3 = "-";
+
+  void getcurrentuser() async {
+    try {
+      // final user = await _auth.currentUser();
+      ///yata line eka chatgpt code ekk meka gatte uda line eke error ekk ena hinda hrytama scene eka terenne na
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        loggedinuser = user;
+        client = loggedinuser.email!;
+
+        ///i have to call the getdatafrm the function here and parse client as a parameter
+
+        print(loggedinuser.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getcurrentuser();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _firestore = FirebaseFirestore.instance;
-    final _auth = FirebaseAuth.instance;
-
-    void getcurrentuser() async {
-      try {
-        // final user = await _auth.currentUser();
-        ///yata line eka chatgpt code ekk meka gatte uda line eke error ekk ena hinda hrytama scene eka terenne na
-        User? user = FirebaseAuth.instance.currentUser;
-        if (user != null) {
-          loggedinuser = user;
-          client = loggedinuser.email!;
-
-          ///i have to call the getdatafrm the function here and parse client as a parameter
-
-          print(loggedinuser.email);
-        }
-      } catch (e) {
-        print(e);
-      }
-    }
-
-    ///upload
-    Future<void> upload(String loc, String dt1, String dt2, String ac1,
-        String ac2, String ac3) async {
-      String idd = "$client $loc";
-      final failedattempt = _firestore.collection("reservations").doc(idd);
-      failedattempt.set({
-        'code': idd,
-        'Location': loc,
-        'StartingDate': dt1,
-        'Enddate': dt2,
-        'Activity1': ac1,
-        'Activity2': ac2,
-        'Activity3': ac3,
-      });
-    }
-
-    /// end
-
-    @override
-    void initState() {
-      super.initState();
-      getcurrentuser();
-
-      //_initNetworkInfo();
-    }
-
-    TextEditingController locationcontroller = new TextEditingController();
-    TextEditingController startdatecontroller = new TextEditingController();
-    TextEditingController enddatecontroller = new TextEditingController();
-    TextEditingController activity1controller = new TextEditingController();
-    TextEditingController activity2controller = new TextEditingController();
-    TextEditingController activity3controller = new TextEditingController();
-
-    String location = "";
-    String startdate = "";
-    String enddate = "";
-    String activity1 = "-";
-    String activity2 = "-";
-    String activity3 = "-";
-
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
@@ -279,6 +277,8 @@ class _HomeState extends State<Home> {
                           activity3controller.text = "";
                           activity2controller.text = "";
                           activity1controller.text = "";
+                          upload(location, startdate, enddate, activity1,
+                              activity2, activity3);
                         },
                         child: Text('Submit')),
                     Spacer(),
