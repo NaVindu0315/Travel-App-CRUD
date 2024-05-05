@@ -81,6 +81,11 @@ class _RatingclzState extends State<Ratingclz> {
           Row(
             children: [
               Spacer(),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: Text('refresh')),
               Spacer(),
             ],
           )
