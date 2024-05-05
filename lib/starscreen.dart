@@ -14,6 +14,29 @@ class Ratingclz extends StatefulWidget {
 
 class _RatingclzState extends State<Ratingclz> {
   final _firestore = FirebaseFirestore.instance;
+  int strval = 0;
+
+  Future<void> retrieveData() async {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final DocumentSnapshot _documentSnapshot =
+        await _firestore.collection('stars').doc('start1').get();
+
+    if (_documentSnapshot.exists) {
+      strval = _documentSnapshot.get('starcount');
+
+      // Now you can use these variables as needed
+      // print('Name: $_name, Bday: $_bday, Address: $_address, Image URL: $_imageUrl');
+    } else {
+      print('Document does not exist');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    retrieveData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +54,7 @@ class _RatingclzState extends State<Ratingclz> {
                 Spacer(),
                 StarDisplay(
                   key: ValueKey('key'),
-                  value: 3,
+                  value: strval,
                 ),
                 Spacer(),
               ],
@@ -55,6 +78,12 @@ class _RatingclzState extends State<Ratingclz> {
               },
             ),
           ),
+          Row(
+            children: [
+              Spacer(),
+              Spacer(),
+            ],
+          )
         ],
       ),
     );
