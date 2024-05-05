@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelapp/Login.dart';
 
-import 'login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+/*
 
 //void main() => runApp(gemifysign());
 void main() {
@@ -339,3 +339,4 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
+*/
