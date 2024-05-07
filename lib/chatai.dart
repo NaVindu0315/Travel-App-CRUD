@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+
+import 'package:google_generative_ai/google_generative_ai.dart';
 
 class promptpage extends StatefulWidget {
   const promptpage({Key? key}) : super(key: key);
@@ -18,7 +21,11 @@ class _promptpageState extends State<promptpage> {
             Row(
               children: [
                 Spacer(),
-                ElevatedButton(onPressed: () {}, child: Text('Prompt')),
+                ElevatedButton(
+                    onPressed: () {
+                      print('pal');
+                    },
+                    child: Text('Prompt')),
                 Spacer(),
               ],
             ),

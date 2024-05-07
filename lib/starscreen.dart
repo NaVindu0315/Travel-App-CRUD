@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:travelapp/chatai.dart';
 import 'package:travelapp/widget.dart';
 
 import 'displaywidget.dart';
@@ -81,7 +82,14 @@ class _RatingclzState extends State<Ratingclz> {
           Row(
             children: [
               Spacer(),
-              ElevatedButton(onPressed: () {}, child: Text('refresh')),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => promptpage()),
+                    );
+                  },
+                  child: Text('refresh')),
               Spacer(),
             ],
           )
